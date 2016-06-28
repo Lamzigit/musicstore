@@ -1,0 +1,164 @@
+li{
+	list-style: none;
+}
+
+html, body {
+    color: #505050;
+    line-height: 1.75em;
+    background: #ebebeb;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+/*.main-header{
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+}
+*/
+div[role="header-img-roller"]{
+	text-align: center;
+    padding: 42px 0;
+    background: #f4645f;
+    color: #fff;
+}
+.caption h3{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 6px;
+	margin-bottom: 2px;
+}
+.aside-classify{
+	padding: 35px;
+    background: #ffffff;
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+}
+.aside-classify h2{
+	margin-top: 0;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 21px;
+    position: relative;
+}
+.aside-classify li a{
+	border: 1px solid #f4645f;
+    background: #f4645f;
+    color: #ffffff;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 21px;
+}
+.main-footer{
+	background: #202020;
+    padding: 35px 0 0;
+    color: #959595;
+}
+.main-footer h2{
+	margin-top: 0;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 21px;
+    position: relative;
+}
+.main-footer li{
+	border-bottom: 1px dashed #303030;
+	padding-bottom: 14px;
+    margin-bottom: 14px;
+}
+
+/*---鐧诲綍椤甸潰鏍峰紡--*/
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 100px;
+}
+.form-signin h2{
+	margin-bottom: 30px;
+	text-align: center;
+}
+.form-signin input{
+	margin-bottom: 10px;
+}
+.form-signin button{
+	background-color: #f4645f;
+    border-color: #f4645f;
+}
+
+/*---姝屾洸璇︽儏--*/
+.song-desc-title{
+    border-bottom: 1px dashed #303030;
+}
+.song-desc-title h2{
+    margin-bottom: 35px;
+}
+.song-desc-title p{
+    margin-left: 10px;
+}
+.song-desc-post p{
+    padding: 20px 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    height: 400px;
+    border-bottom: 1px dashed #303030;
+}
+/*---鎺у埗鍙版洿鏂版瓕鏇�--*/
+.input-upload{
+    background: #fff;
+    padding: 10px 15px;
+}
+
+/*收银台*/
+.car-list-title{
+	border-bottom: 1px solid #303030;
+	padding-bottom:20px;
+    margin-bottom: 30px;
+}
+.car-list-post{
+    border-bottom: 1px solid #303030;
+    margin-bottom: 40px;
+}
+.car-list-post  h1, .car-list-counter  h1{
+	    font-size: 30px;
+	    color: #777;
+}
+.car-list-post  h2 , .car-list-counter  h2{
+	    font-size: 1.5em;
+	    color: #777;
+}
+.car-list-post p, .car-list-counter  p{
+		padding-top:60px;
+		 font-size: 1.5em;
+	    color: #777;
+}
+.car-list-counter  h2{
+	padding-left:50px;
+}
+.car-list-counter  p{
+	padding-top:25px;
+	padding-bottom:30px;
+}
+
+/*user-info-modify*/
+.form-info-modify{
+
+}
+.form-info-modify h2{
+	margin-bottom:20px;
+	border-bottom:1px dashed #000;
+	padding-bottom:20px;
+}
+.form-info-modify input{
+	margin-bottom:20px;
+}
+/*admin-genrelist.jsp*/
+#genrelist{
+	backgroun-color:#000;
+	padding:10px;
+}
+#genre{
+	margin-bottom:20px;
+}

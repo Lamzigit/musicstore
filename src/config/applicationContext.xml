@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xmlns:p="http://www.springframework.org/schema/p"
+				xmlns:context="http://www.springframework.org/schema/context"
+				xmlns:aop="http://www.springframework.org/schema/aop"
+				xmlns:tx="http://www.springframework.org/schema/tx"
+				xmlns:mvc="http://www.springframework.org/schema/mvc"
+				xsi:schemaLocation="
+								http://www.springframework.org/schema/beans 
+								http://www.springframework.org/schema/beans/spring-beans.xsd
+								http://www.springframework.org/schema/context
+								http://www.springframework.org/schema/context/spring-context.xsd
+								http://www.springframework.org/schema/aop
+								http://www.springframework.org/schema/aop/spring-aop.xsd
+								http://www.springframework.org/schema/tx 
+								http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:4401/musicstore"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	
+		<!-- 设置sessionFactory的数据源属性 -->
+		<property name="dataSource" ref="dataSource" />
+		
+		<!-- 扫描实体类里的注解 -->
+		<property name="annotatedClasses">  
+            <list>  
+                <value>com.serve.entity.User</value>
+                <value>com.serve.entity.Album</value>
+                <value>com.serve.entity.Consignee</value>  
+                <value>com.serve.entity.Genre</value>  
+                <value>com.serve.entity.Orderdetail</value>  
+                <value>com.serve.entity.Orders</value>   
+                <value>com.serve.entity.UserRole</value>   
+            </list>  
+        </property>
+		
+		<!-- 设置hibernate的 相关属性，这样就省去了hibernate.cfg.xml文件 -->
+		<property name="hibernateProperties">
+			<props>
+				 <!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!--update(常用):如果没有schema就创建，有就更新。  --> 
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。FetchSize设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->  
+				<prop key="hibernate.show_sql">true</prop>
+				
+				<prop key="hibernate.format_sql">true</prop>
+				
+				<prop key="hibernate.connection.autocommit">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 配置一个声明式事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">  
+	    <tx:attributes>  
+		    <tx:method name="add*" propagation="REQUIRED"/>  
+		    <tx:method name="delete*" propagation="REQUIRED"/>  
+		    <tx:method name="update*" propagation="REQUIRED"/>  
+		    <tx:method name="get*" read-only="true" propagation="NOT_SUPPORTED"/>  
+		    <tx:method name="*" read-only="true"/>  
+	    </tx:attributes>  
+    </tx:advice> 
+    <aop:config>  
+	    <aop:pointcut id="allServiceMethod" expression="execution(* com.serve.service.impl.*.*(..))"/>  
+	    <aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice"/>  
+    </aop:config>
+	
+	<!-- 扫描注解 -->
+	<context:component-scan base-package="com.serve.*" />
+
+</beans>
